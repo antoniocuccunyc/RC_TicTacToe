@@ -24,12 +24,14 @@ def is_board_full(board):
 def get_move(board, player):
     while True:
         try:
-            move = input(f'Player {player}, enter your move (1-9: ')
+            move = input(f'Player {player}, enter your move (1-9): ')
             move = int(move) - 1
             if move < 0 or move > 8:
-                print('Invalid move, please enter a number between 1 and 9')
+                print('Invalid move, please enter a number between 1 and 9)')
+                continue
             if board[move] != ' ':
                 print('Invalid move, the spot is already filled')
+                continue
             return move
         except ValueError:
             print('Invalid move, please enter a number between 1 and 9)')
