@@ -19,12 +19,12 @@ def check_win(board):
     return None
 
 def is_board_full(board):
-    return '' not in board
+    return ' ' not in board
 
 def get_move(board, player):
     while True:
         try:
-            move = input(f'Player{player}, enter your move (1-9: ')
+            move = input(f'Player {player}, enter your move (1-9: ')
             move = int(move) - 1
             if move < 0 or move > 8:
                 print('Invalid move, please enter a number between 1 and 9')
@@ -32,5 +32,34 @@ def get_move(board, player):
                 print('Invalid move, the spot is already filled')
             return move
         except ValueError:
-            print('Invalid move, please enter a number between 1 and 9')
+            print('Invalid move, please enter a number between 1 and 9)')
 
+def new_board():
+    board = [' '] * 9
+    return board
+
+def play_game():
+    board = new_board()
+    current_player = 'X'
+
+    print('The game has started hehehe')
+    print('Positions are numbered 1-9')
+    print_board(['1','2','3','4','5','6','7','8','9'])
+    while True:
+        print_board(board)
+        move = get_move(board, current_player)
+        board[move] = current_player
+        winner = check_win(board)
+        if winner:
+            print_board(board)
+            print(f'Player {current_player} wins!')
+            break
+        if is_board_full(board):
+            print_board(board)
+            print("It's a tie!")
+            break
+
+        current_player = 'O' if current_player == 'X' else 'X'
+
+if __name__ == "__main__":
+    play_game()
